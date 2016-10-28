@@ -235,3 +235,6 @@ _Pvt_Extensions
 
 bin/
 obj/
+.vscode/
+yarn-error.log
+npm-debug.log

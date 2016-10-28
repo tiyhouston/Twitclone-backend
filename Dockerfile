@@ -1,4 +1,5 @@
 FROM microsoft/dotnet:latest
+LABEL name "dotnetcore-boilerplate"
 RUN mkdir -p /app
 COPY . /app
 WORKDIR /app

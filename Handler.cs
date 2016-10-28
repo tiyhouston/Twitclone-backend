@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.Swagger.Model;
 using Swashbuckle.SwaggerGen.Generator;
+using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 
 public class Handler {
 
@@ -69,14 +70,14 @@ public class Handler {
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, DB db) {
-        logger.AddConsole(Configuration.GetSection("Logging"));
+        // logger.AddConsole(Configuration.GetSection("Logging"));
         logger.AddDebug();
 
         // if (env.IsDevelopment())
         // {
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
-            app.UseStatusCodePages();
+            // app.UseStatusCodePages();
         // }
 
         // app.UseApplicationInsightsRequestTelemetry();
@@ -84,7 +85,7 @@ public class Handler {
 
         app.UseStaticFiles();
         // app.UseIdentity();
-        app.UseMvc();
+        app.UseMvc(); //.AddXmlSerializerFormatters();
         // app.UseStatusCodePagesWithReExecute("/Home/Errors/{0}");
         // Seed.Initialize(db);
         

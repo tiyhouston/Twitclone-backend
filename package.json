@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "postcss --use autoprefixer --autoprefixer.browsers \"last 50 versions\" --use precss --use postcss-calc --use csswring -w -o assets/css/style.css assets/css/style.scss",
+    "net": "dotnet watch run",
+    "start": "npm-run-all --parallel watch net"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^6.5.1",
+    "csswring": "^5.1.0",
+    "npm-run-all": "^3.1.1",
+    "postcss-calc": "^5.3.1",
+    "postcss-cli": "^2.6.0",
+    "precss": "^1.4.0"
+  }
+}
