@@ -26,11 +26,7 @@
 
     - from project folder: `now --docker`
     - open the url provided (`dotnetcore-boilerplate-XXXXXXXXXXXX.now.sh`); when the installation is done the browser will be redirected to your new server
-    - to setup a custom URL:
-
-        ```sh
-        now alias dotnetcore-boilerplate-XXXXXXXXXXXX.now.sh YOURAPPNAME.now.sh
-        ```
+    - to setup a custom URL: `now alias dotnetcore-boilerplate-XXXXXXXXXXXX.now.sh YOURAPPNAME.now.sh`
 
     To https://heroku.com
 
