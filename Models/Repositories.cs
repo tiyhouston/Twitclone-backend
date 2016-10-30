@@ -17,8 +17,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 
-public interface IRepository<T>
-{
+public interface HasId {
+    int GetId();
+}
+
+public interface IRepository<T> { 
     void Create(T item);
     IEnumerable<T> Read();
     T Read(int id);
@@ -26,33 +29,30 @@ public interface IRepository<T>
     T Delete(int id);
 }
 
-/*
-public class PostRepo : IRepository<Post> {
+public class Repo<T> : IRepository<T> where T : HasId {
 
-    private static ConcurrentDictionary<int, Post> ls = new ConcurrentDictionary<int, Post>();
+    private static ConcurrentDictionary<int, T> ls = new ConcurrentDictionary<int, T>();
     
-    public void Create(Post item){
-        // item.PostId = Guid.NewGuid(); // to uncommment, will have to change PostId to Guid in the Models
-        ls[item.PostId] = item;
+    public void Create(T item){
+        ls[new Random().Next()] = item;
     }
     
-    public IEnumerable<Post> Read(){
+    public IEnumerable<T> Read(){
         return ls.Values;
     }
     
-    public Post Read(int id){
+    public T Read(int id){
         return ls[id];
     }
     
-    public void Update(Post item){
-        ls[item.PostId] = item;
+    public void Update(T item){
+        ls[item.GetId()] = item;
     }
     
-    public Post Delete(int id){
-        Post item;
+    public T Delete(int id){
+        T item;
         ls.TryRemove(id, out item);
         return item;
     }
 
 }
-*/

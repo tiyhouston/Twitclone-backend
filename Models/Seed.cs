@@ -13,6 +13,7 @@ public static class Seed
     {
         db.Database.EnsureDeleted(); // delete then, ...
         db.Database.EnsureCreated(); // create
+        // db.Database.Migrate();
         
         // Look for any Posts.
         if (db.Posts.Any())

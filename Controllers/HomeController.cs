@@ -5,7 +5,9 @@ public class HomeController : Controller
 {
     [HttpGet]
     public IActionResult Root(){
-        return Ok("Ok.");
+        ViewData["Message"] = "Some extra info can be sent to the view";
+        ViewData["Username"] = "Me";
+        return View("Index");
     }
 
     [HttpGet("Home/Index/{username?}")]

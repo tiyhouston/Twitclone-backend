@@ -73,6 +73,14 @@ public class Handler {
         // logger.AddConsole(Configuration.GetSection("Logging"));
         logger.AddDebug();
 
+        // Example custom middleware
+        // app.Use(async (context, next) =>
+        // {
+        //     await context.Response.WriteAsync("Pre Processing");
+        //     await next();
+        //     await context.Response.WriteAsync("Post Processing");
+        // });
+
         // if (env.IsDevelopment())
         // {
             app.UseDeveloperExceptionPage();

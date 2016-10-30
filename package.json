@@ -1,18 +1,47 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
-    "watch": "postcss --use autoprefixer --autoprefixer.browsers \"last 50 versions\" --use precss --use postcss-calc --use csswring -w -o assets/css/style.css assets/css/style.scss",
-    "net": "dotnet watch run",
-    "start": "npm-run-all --parallel watch net"
+    "css:watch": "postcss --use autoprefixer --autoprefixer.browsers \"last 50 versions\" --use precss --use postcss-calc --use csswring -w -o assets/build/style.css assets/css/style.scss",
+    "css": "postcss --use autoprefixer --autoprefixer.browsers \"last 50 versions\" --use precss --use postcss-calc --use csswring -o assets/build/style.css assets/css/style.scss",
+    "net:watch": "dotnet watch run",
+    "net": "dotnet run",
+    "js:watch": "webpack --watch",
+    "js": "node build",
+    "prestart": "rimraf assets/build",
+    "start": "npm-run-all --parallel css:watch js:watch net:watch",
+    "www": "npm-run-all css js net",
+    "setup": "dotnet restore && yarn",
+    "deploy": "now --docker && now-realias"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "rimraf": "^2.5.4",
     "autoprefixer": "^6.5.1",
     "csswring": "^5.1.0",
     "npm-run-all": "^3.1.1",
     "postcss-calc": "^5.3.1",
     "postcss-cli": "^2.6.0",
-    "precss": "^1.4.0"
+    "precss": "^1.4.0",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-tcomb": "^0.3.21",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-latest": "^6.14.0",
+    "babel-preset-react": "6.x",
+    "tcomb": "^3.2.15",
+    "now-realias": "latest",
+    "file-loader": "^0.9.0",
+    "jsx-loader": "^0.13.2",
+    "offline-plugin": "^3.4.2",
+    "optimize-js-plugin": "^0.0.4",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "ud": "^3.0.1",
+    "universal-utils": "^1.0.37",
+    "url-loader": "latest",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.1"
   }
 }
