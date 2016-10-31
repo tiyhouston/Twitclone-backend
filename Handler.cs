@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-// using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,32 +25,44 @@ public class Handler {
             .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
             .AddEnvironmentVariables();
 
-        // if (env.IsDevelopment())
-        // {
-        //     // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
-        //     builder.AddUserSecrets();
-        // }
+        if (env.IsDevelopment())
+        {
+            // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
+            // builder.AddUserSecrets();
+        }
 
         Configuration = builder.Build();
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
+        // sqlite
+        services.AddDbContext<DB>(options => options.UseSqlite(Configuration.GetConnectionString("Sqlite")));
 
-        // services.AddDbContext<DB>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+        // in-memory
+        // services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
 
-        services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
+        // postgresql
+        // Use a PostgreSQL database
+        // services.AddDbContext<DB>(options =>
+        //     options.UseNpgsql(
+        //         Configuration.GetConnectionString("Postgres-dev"),
+        //         b => b.MigrationsAssembly("AspNet5MultipleProject")
+        //     )
+        // );
 
         // services.AddIdentity<User, IdentityRole>()
         //     .AddEntityFrameworkStores<DB>()
         //     .AddDefaultTokenProviders();
 
-        // services.AddApplicationInsightsTelemetry(Configuration);
         services.AddMvc();
 
-        // services.AddSingleton<IRepository<Post>, PostRepo>();
-        // services.AddTransient<IRepository<Post>, PostRepo>();
-        // services.AddPost<IRepository<Post>, PostRepo>();
+        // instead of
+        //      services.AddScoped<IRepository<Card>, Repo<Card>>();
+        // do
+        Repo<Card>.Register(services, "Cards");
+        Repo<CardList>.Register(services, "CardLists");
+        Repo<Board>.Register(services, "Boards");
 
         // Inject an implementation of ISwaggerProvider with defaulted settings applied
         services.AddSwaggerGen();
@@ -86,7 +98,9 @@ public class Handler {
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
             app.UseStatusCodePages();
-            // Seed.Initialize(db);
+            Seed.InitializeDev(db);
+        } else {
+            Seed.InitializeProd(db);
         }
 
         // app.UseApplicationInsightsRequestTelemetry();
@@ -94,6 +108,32 @@ public class Handler {
 
         app.UseStaticFiles();
         // app.UseIdentity();
+        // app.EnsureRolesCreated();
+
+        // See comments in config.json for info on enabling Facebook auth
+        // var facebookId = Configuration["Auth:Facebook:AppId"];
+        // var facebookSecret = Configuration["Auth:Facebook:AppSecret"];
+        // if (!string.IsNullOrWhiteSpace(facebookId) && !string.IsNullOrWhiteSpace(facebookSecret))
+        // {
+        //     app.UseFacebookAuthentication(new FacebookOptions
+        //     {
+        //         AppId = facebookId,
+        //         AppSecret = facebookSecret
+        //     });
+        // }
+
+        // // See comments in config.json for info on enabling Google auth
+        // var googleId = Configuration["Auth:Google:ClientId"];
+        // var googleSecret = Configuration["Auth:Google:ClientSecret"];
+        // if (!string.IsNullOrWhiteSpace(googleId) && !string.IsNullOrWhiteSpace(googleSecret))
+        // {
+        //     app.UseGoogleAuthentication(new GoogleOptions
+        //     {
+        //         ClientId = googleId,
+        //         ClientSecret = googleSecret
+        //     });
+        // }
+
         app.UseMvc(); //.AddXmlSerializerFormatters();
         // app.UseStatusCodePagesWithReExecute("/Home/Errors/{0}");
         

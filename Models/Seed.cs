@@ -1,39 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 public static class Seed
 {
-    public static void Initialize(DB db)
-    {
-        db.Database.EnsureDeleted(); // delete then, ...
-        db.Database.EnsureCreated(); // create
-        // db.Database.Migrate();
-        
+    public static void InitializeDev(DB db)
+    {   
         // Look for any Posts.
-        if (db.Posts.Any())
-        {
-            return; // DB has been seeded already
-        }
+        // if (db.Cards.Any() || db.CardLists.Any())
+        db.Database.EnsureDeleted(); // delete then, ...
+        db.Database.EnsureCreated(); // create the tables!! 
         
-        List<Post> posts = new List<Post>();
-        // Blog mine = new Blog {Url = "mkeas.org"};
-        // db.Blogs.Add(mine);
+        CardList todo = new CardList { Summary="Todo items", Cards = new List<Card>() };
+
         for(var i = 0; i < 10; i++){
-            db.Posts.Add(new Post { Title = $"Test Post {i}", Content = $"Test Content {i}" }); // Date=DateTime.Parse("2005-09-01")}
+            todo.Cards.Add(
+                new Card { Title = $"Test Card {i}", Content = $"Test Content {i}",  }
+            );
         }
 
-        // Console.WriteLine(db.Database);
+        db.CardLists.Add(todo);
+
         db.SaveChanges();
 
         // print out the tables 
-        Console.WriteLine("----------POSTS SEEDED-------------");
-        // Console.WriteLine(db.Blogs.ToList().Count);
-        Console.WriteLine(db.Posts.ToList().Count);
+        Console.WriteLine("----------CARDS SEEDED-------------");
+    }
+
+    public static void InitializeProd(DB db){
+        db.Database.EnsureCreated();
+        // db.Database.Migrate();
     }
 }
