@@ -81,12 +81,13 @@ public class Handler {
         //     await context.Response.WriteAsync("Post Processing");
         // });
 
-        // if (env.IsDevelopment())
-        // {
+        if (env.IsDevelopment())
+        {
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
-            // app.UseStatusCodePages();
-        // }
+            app.UseStatusCodePages();
+            // Seed.Initialize(db);
+        }
 
         // app.UseApplicationInsightsRequestTelemetry();
         // app.UseApplicationInsightsExceptionTelemetry();
@@ -95,7 +96,6 @@ public class Handler {
         // app.UseIdentity();
         app.UseMvc(); //.AddXmlSerializerFormatters();
         // app.UseStatusCodePagesWithReExecute("/Home/Errors/{0}");
-        // Seed.Initialize(db);
         
         // Enable middleware to serve generated Swagger as a JSON endpoint
         app.UseSwagger();

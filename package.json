@@ -3,7 +3,7 @@
   "scripts": {
     "css:watch": "postcss --use autoprefixer --autoprefixer.browsers \"last 50 versions\" --use precss --use postcss-calc --use csswring -w -o assets/build/style.css assets/css/style.scss",
     "css": "postcss --use autoprefixer --autoprefixer.browsers \"last 50 versions\" --use precss --use postcss-calc --use csswring -o assets/build/style.css assets/css/style.scss",
-    "net:watch": "dotnet watch run",
+    "net:watch": "export ASPNETCORE_ENVIRONMENT=Development && dotnet watch run",
     "net": "dotnet run",
     "js:watch": "webpack --watch",
     "js": "node build",
