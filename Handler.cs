@@ -37,10 +37,10 @@ public class Handler {
     public void ConfigureServices(IServiceCollection services)
     {
         // sqlite
-        services.AddDbContext<DB>(options => options.UseSqlite(Configuration.GetConnectionString("Sqlite")));
+        //services.AddDbContext<DB>(options => options.UseSqlite(Configuration.GetConnectionString("Sqlite")));
 
         // in-memory
-        // services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
+        services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
 
         // postgresql
         // Use a PostgreSQL database
@@ -60,9 +60,9 @@ public class Handler {
         // instead of
         //      services.AddScoped<IRepository<Card>, Repo<Card>>();
         // do
-        Repo<Card>.Register(services, "Cards");
-        Repo<CardList>.Register(services, "CardLists");
-        Repo<Board>.Register(services, "Boards");
+        Repo<Tweet>.Register(services, "Tweets");
+        // Repo<CardList>.Register(services, "CardLists");
+        // Repo<Board>.Register(services, "Boards");
 
         // Inject an implementation of ISwaggerProvider with defaulted settings applied
         services.AddSwaggerGen();

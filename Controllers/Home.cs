@@ -4,11 +4,11 @@ using System.Linq;
 [Route("/")]
 public class HomeController : Controller
 {
-    private IRepository<Card> cards;
-    private IRepository<CardList> lists;
-    public HomeController(IRepository<Card> cards, IRepository<CardList> lists){
-        this.cards = cards;
-        this.lists = lists;
+    private IRepository<Tweet> tweets;
+    // private IRepository<TweetList> lists;
+    public HomeController(IRepository<Tweet> Tweets){
+        this.Tweets = Tweets;
+        
     }
 
     [HttpGet("/{username?}")]

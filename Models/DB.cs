@@ -16,7 +16,7 @@ public class DB : DbContext {
         base.OnModelCreating(builder);
     }
 
-    public DbSet<Card> Cards { get; set; }
-    public DbSet<CardList> CardLists { get; set; }
-    public DbSet<Board> Boards { get; set; }
+    public DbSet<Tweet> Tweets { get; set; }
+    // public DbSet<CardList> CardLists { get; set; }
+    // public DbSet<Board> Boards { get; set; }
 }

@@ -11,6 +11,9 @@ public interface HasId {
     int Id { get; set; }
 }
 
+public interface CreatedAt {
+    DateTime CreatedAt{get; set;}
+}
 public interface IRepository<T> { 
     T Create(T item);
     IEnumerable<T> Read();
