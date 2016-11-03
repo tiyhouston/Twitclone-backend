@@ -13,8 +13,13 @@ public interface HasId {
 
 public interface ITweetRepo {
     void add(Tweet t);
-    // IEnumerable<Tweet> getAll();
-     //stop @ 3 to test
+    void add(Post p); // CREATE
+    IEnumerable<Post> getAll(); // READ
+    Post get(int Id); // READ  get 1
+    Post update(int Id, Post p); // UPDATE
+    void delete(int PostId); // DELETE
+    //Dictionary<string, int> getBy();
+    IEnumerable<Post> getTen();
 }
 public interface IRepository<T> { 
     T Create(T item);
