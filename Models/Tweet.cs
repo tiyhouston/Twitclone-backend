@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-public class Tweet : HasId, ITweetRepo
+public class Tweet : HasId 
 {
     public int Id{get; set;}
     public string Content{get; set;}
@@ -21,15 +21,6 @@ public class Tweet : HasId, ITweetRepo
 
     private List<Tweet> tweets = new List<Tweet>();
 
-    public void add(Tweet t){
-        tweets.Add(t);
-    }
-    // public void getAll(Tweet t){
-    //     tweets.getAll(t);
-    }
-
-
-
 public class TweetList : HasId {
     public int Id { get; set; }
     public string Summary { get; set; }
@@ -40,8 +31,9 @@ public class Twitclone : HasId {
     public int Id { get; set; }
     public List<TweetList> Lists { get; set; }
 }
-// public partial class DB : DbContext {
-//     public DbSet<Tweet> Tweets { get; set; }
-//     public DbSet<TweetList> TweetLists { get; set; }
-//     public DbSet<Tweet> Twitclone { get; set; }
-// }
+}
+public partial class DB : DbContext {
+    public DbSet<Tweet> Tweets { get; set; }
+    // public DbSet<TweetList> TweetLists { get; set; }
+    // public DbSet<Tweet> Twitclone { get; set; }
+}

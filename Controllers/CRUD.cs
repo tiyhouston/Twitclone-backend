@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System;
 
 /*
 
@@ -15,6 +16,7 @@ PATCH /api/todo/{id}	Update an existing item	To-do item (partial)	None
 DELETE /api/todo/{id}	Delete an item.	        None	                None
 
 */
+[Route("/api/tweet")]
 public abstract class CRUDController<T> : Controller where T: class, HasId
 {
     private IRepository<T> r;
@@ -23,7 +25,14 @@ public abstract class CRUDController<T> : Controller where T: class, HasId
     }
 
     [HttpPost]
-    public IActionResult C([FromBody] T item) => Ok(r.Create(item));
+    public IActionResult C([FromBody] T item) {
+        // Console.WriteLine(ModelState);
+        // if(!ModelState.IsValid)
+        //     return BadRequest(ModelState.to());
+
+            return Ok(r.Create(item));
+
+    }
 
     [HttpGet("{id?}")]
     public IActionResult R(int id = -1) {
@@ -52,5 +61,16 @@ public abstract class CRUDController<T> : Controller where T: class, HasId
             return NotFound();
         
         return Ok(item);
+    }
+
+    [HttpPost("{id?}/tag")]
+
+    public IActionResult Ctag([FromBody] T item) {
+        // Console.WriteLine(ModelState);
+        // if(!ModelState.IsValid)
+        //     return BadRequest(ModelState.to());
+
+            return Ok(r.Create(item));
+
     }
 }

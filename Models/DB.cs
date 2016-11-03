@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-public class DB : DbContext {
+public partial class DB : DbContext {
 
     public DB(DbContextOptions context): base(context){}
 
@@ -16,7 +16,4 @@ public class DB : DbContext {
         base.OnModelCreating(builder);
     }
 
-    public DbSet<Tweet> Tweets { get; set; }
-    public DbSet<TweetList> TweetList { get; set; }
-    public DbSet<Tweet> Twitclone { get; set; }
 }

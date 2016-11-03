@@ -12,5 +12,6 @@ public class User: HasId{
     public string Username{get; set;}
     public string AvatarURL{get; set;}
     public DateTime CreatedAt{get; set;}
+    int TweetId {get; set;}
 
 }    
