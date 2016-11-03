@@ -17,6 +17,6 @@ public class DB : DbContext {
     }
 
     public DbSet<Tweet> Tweets { get; set; }
-    // public DbSet<CardList> CardLists { get; set; }
-    // public DbSet<Board> Boards { get; set; }
+    public DbSet<TweetList> TweetList { get; set; }
+    public DbSet<Tweet> Twitclone { get; set; }
 }

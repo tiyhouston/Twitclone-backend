@@ -11,8 +11,10 @@ public interface HasId {
     int Id { get; set; }
 }
 
-public interface CreatedAt {
-    DateTime CreatedAt{get; set;}
+public interface ITweetRepo {
+    void add(Tweet t);
+    // IEnumerable<Tweet> getAll();
+     //stop @ 3 to test
 }
 public interface IRepository<T> { 
     T Create(T item);
@@ -84,5 +86,7 @@ public class Repo<T> : IRepository<T> where T : class, HasId {
         }
         return null;
     }
+
+    public IEnumerable<T> FromSql(string sql) => table.FromSql(sql);
 
 }

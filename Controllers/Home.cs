@@ -6,8 +6,8 @@ public class HomeController : Controller
 {
     private IRepository<Tweet> tweets;
     // private IRepository<TweetList> lists;
-    public HomeController(IRepository<Tweet> Tweets){
-        this.Tweets = Tweets;
+    public HomeController(IRepository<Tweet> tweets){
+        this.tweets = tweets;
         
     }
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-public class Tweet : HasId, CreatedAt
+public class Tweet : HasId, ITweetRepo
 {
     public int Id{get; set;}
     public string Content{get; set;}
@@ -18,20 +18,30 @@ public class Tweet : HasId, CreatedAt
     public List<Like> Likes{get; set;}
     public List<Tweet> Retweets{get; set;}
     public DateTime CreatedAt{get; set;}
+
+    private List<Tweet> tweets = new List<Tweet>();
+
+    public void add(Tweet t){
+        tweets.Add(t);
+    }
+    // public void getAll(Tweet t){
+    //     tweets.getAll(t);
+    }
+
+
+
+public class TweetList : HasId {
+    public int Id { get; set; }
+    public string Summary { get; set; }
+    public List<Tweet> Tweets { get; set; }
 }
 
-// public class CardList : HasId {
-//     public int Id { get; set; }
-//     public string Summary { get; set; }
-//     public List<Card> Cards { get; set; }
-// }
-
-// public class Board : HasId {
-//     public int Id { get; set; }
-//     public List<CardList> Lists { get; set; }
-// }
-public partial class DB : DbContext {
-    public DbSet<Tweet> Tweets { get; set; }
-    // public DbSet<CardList> CardLists { get; set; }
-    // public DbSet<Board> Boards { get; set; }
+public class Twitclone : HasId {
+    public int Id { get; set; }
+    public List<TweetList> Lists { get; set; }
 }
+// public partial class DB : DbContext {
+//     public DbSet<Tweet> Tweets { get; set; }
+//     public DbSet<TweetList> TweetLists { get; set; }
+//     public DbSet<Tweet> Twitclone { get; set; }
+// }

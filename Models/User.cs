@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-public class User: HasId, CreatedAt{
+public class User: HasId{
     public int Id{get; set;}
     public string Username{get; set;}
     public string AvatarURL{get; set;}

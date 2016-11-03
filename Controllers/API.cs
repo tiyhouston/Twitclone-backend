@@ -1,17 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
+using System;
 
 [Route("/api/tweet")]
-public class TweetController : CRUDController<Tweet> {
-    public TweetController(IRepository<Tweet> t) : base(t){}
+
+public class TweetAPIController : CRUDController<Tweet> {
+    private IRepository<Tweet> tweets;
+    public TweetAPIController(IRepository<Tweet> t) : base(t){
+        tweets = t;
+    }
 }
-
-// [Route("/api/cardlist")]
-// public class CardListController : CRUDController<CardList> {
-//     public CardListController(IRepository<CardList> r) : base(r){}
-// }
-
-// [Route("/api/board")]
-// public class BoardController : CRUDController<Board> {
-//     public BoardController(IRepository<Board> r) : base(r){}
-// }
+    
+    // [HttpPost]
+    // public IActionResult Create([FromBody]Tweet t){
+    //     T Create(T item);
+    //     return Ok();
+    // }

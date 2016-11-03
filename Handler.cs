@@ -83,6 +83,7 @@ public class Handler {
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, DB db) {
         // logger.AddConsole(Configuration.GetSection("Logging"));
+        
         logger.AddDebug();
 
         // Example custom middleware
@@ -93,15 +94,15 @@ public class Handler {
         //     await context.Response.WriteAsync("Post Processing");
         // });
 
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-            app.UseDatabaseErrorPage();
-            app.UseStatusCodePages();
-            Seed.InitializeDev(db);
-        } else {
-            Seed.InitializeProd(db);
-        }
+        // if (env.IsDevelopment())
+        // {
+        //     app.UseDeveloperExceptionPage();
+        //     app.UseDatabaseErrorPage();
+        //     app.UseStatusCodePages();
+        //     Seed.InitializeDev(db);
+        // } else {
+        //     Seed.InitializeProd(db);
+        // }
 
         // app.UseApplicationInsightsRequestTelemetry();
         // app.UseApplicationInsightsExceptionTelemetry();
