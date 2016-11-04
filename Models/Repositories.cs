@@ -82,6 +82,6 @@ public class Repo<T> : IRepository<T> where T : class, HasId {
         return null;
     }
 
-    public IEnumerable<T> FromSql(string sql) => table.FromSql(sql);
+    //public IEnumerable<T> FromSql(string sql) => table.FromSql(sql);
 
 }

@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 
 public class Tweet : HasId 
 {
@@ -31,4 +32,14 @@ public partial class DB : DbContext {
     public DbSet<Tweet> Tweets { get; set; }
     public DbSet<Tweet> Twitclone { get; set; }
     
+}
+
+public partial class Handler {
+   public void RegisterRepos(IServiceCollection services){
+       Repo<Tweet>.Register(services, "Tweets");
+    //    Repo<CardList>.Register(services, "CardLists",
+    //        d => d.Include(l => l.Cards));
+    //    Repo<Board>.Register(services, "Boards",
+    //        d => d.Include(b => b.Lists).ThenInclude(l => l.Cards));
+   }
 }

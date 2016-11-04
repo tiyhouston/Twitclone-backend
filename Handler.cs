@@ -13,7 +13,7 @@ using Swashbuckle.Swagger.Model;
 using Swashbuckle.SwaggerGen.Generator;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 
-public class Handler {
+public partial class Handler {
 
     public IConfigurationRoot Configuration { get; }
 
@@ -40,8 +40,10 @@ public class Handler {
         //services.AddDbContext<DB>(options => options.UseSqlite(Configuration.GetConnectionString("Sqlite")));
 
         // in-memory
+        
         services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
-
+        // services.AddSingleton<IRepository<Tweet>, Repo<Tweet>>();
+        
         // postgresql
         // Use a PostgreSQL database
         // services.AddDbContext<DB>(options =>
@@ -56,11 +58,15 @@ public class Handler {
         //     .AddDefaultTokenProviders();
 
         services.AddMvc();
-        //services.AddSingleton<IRepository<Twitclone>, Twitclone>();
+        RegisterRepos(services);
+        
         // instead of
         //      services.AddScoped<IRepository<Card>, Repo<Card>>();
         // do
-        Repo<Tweet>.Register(services, "Tweets");
+        // Repo<Tweet>.Register(services, "Tweets");
+        // Repo<Tag>.Register(services, "Tags");
+        // Repo<User>.Register(services, "Users");
+        // Repo<Like>.Register(services, "Likes");
         // Repo<CardList>.Register(services, "CardLists");
         // Repo<Board>.Register(services, "Boards");
 
