@@ -14,4 +14,12 @@ public class User: HasId{
     public DateTime CreatedAt{get; set;}
     int TweetId {get; set;}
 
+} 
+
+public partial class DB : DbContext {
+    public DbSet<User> Users { get; set; }
 }    
+
+
+
+  

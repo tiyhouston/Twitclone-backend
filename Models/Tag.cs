@@ -12,7 +12,7 @@ public class Tag: HasId{
     public string Value{get; set;}
     public DateTime CreatedAt{get; set;}
     int TweetId {get; set;}
-
-
-
 }
+public partial class DB : DbContext {
+    public DbSet<Tag> Tags { get; set; }
+}    

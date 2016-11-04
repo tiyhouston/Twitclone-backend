@@ -56,7 +56,7 @@ public class Handler {
         //     .AddDefaultTokenProviders();
 
         services.AddMvc();
-
+        //services.AddSingleton<IRepository<Twitclone>, Twitclone>();
         // instead of
         //      services.AddScoped<IRepository<Card>, Repo<Card>>();
         // do

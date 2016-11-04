@@ -1,19 +1,19 @@
-// using Microsoft.AspNetCore.Mvc;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
-// [Route("/")]
+[Route("/api/tweet")]
 
-// public class TweetController : Controller {
-//     private IRepository<Tweet> tweets;
-//     public TweetController(IRepository<Tweet> t){
-//         tweets = t;
-//     }
-
-//     [HttpGet]
-//     public IActionResult Create(){
-//         return tweets.Create();
-//     }
-
-// }    
+public class TweetAPIController : CRUDController<Tweet> {
+    private IRepository<Tweet> tweets;
+    public TweetAPIController(IRepository<Tweet> t) : base(t){
+        tweets = t;
+    }
+}
+    
+    // [HttpPost]
+    // public IActionResult Create([FromBody]Tweet t){
+    //     T Create(T item);
+    //     return Ok();
+    // }

@@ -18,22 +18,17 @@ public class Tweet : HasId
     public List<Like> Likes{get; set;}
     public List<Tweet> Retweets{get; set;}
     public DateTime CreatedAt{get; set;}
-
-    private List<Tweet> tweets = new List<Tweet>();
-
-public class TweetList : HasId {
-    public int Id { get; set; }
-    public string Summary { get; set; }
-    public List<Tweet> Tweets { get; set; }
+    public int ReplyToTweet{get; set;}
 }
+    //private List<Tweet> tweets = new List<Tweet>();
 
 public class Twitclone : HasId {
     public int Id { get; set; }
-    public List<TweetList> Lists { get; set; }
-}
+    public List<Tweet> TweetLists { get; set; }
+
 }
 public partial class DB : DbContext {
     public DbSet<Tweet> Tweets { get; set; }
-    // public DbSet<TweetList> TweetLists { get; set; }
-    // public DbSet<Tweet> Twitclone { get; set; }
+    public DbSet<Tweet> Twitclone { get; set; }
+    
 }
