@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 
 public class User: HasId{
     public int Id{get; set;}
@@ -19,6 +20,14 @@ public class User: HasId{
 public partial class DB : DbContext {
     public DbSet<User> Users { get; set; }
 }    
+
+// public partial class Handler {
+//    public void RegisterRepos(IServiceCollection services){
+      
+
+//    }
+
+// }
 
 
 

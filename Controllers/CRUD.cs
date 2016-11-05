@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
-
+using System.Collections.Generic;
 /*
 
 RESTful takes these endpoints for each resource
@@ -26,13 +26,16 @@ public abstract class CRUDController<T> : Controller where T: class, HasId
 
     [HttpPost]
     public IActionResult C([FromBody] T item) {
-        // Console.WriteLine(ModelState);
-        // if(!ModelState.IsValid)
-        //     return BadRequest(ModelState.to());
+        Console.WriteLine(ModelState);
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState.ToErrorObject());
 
             return Ok(r.Create(item));
 
     }
+
+    [HttpGet]
+    public IActionResult R() => Ok(r.Read());
 
     [HttpGet("{id?}")]
     public IActionResult R(int id = -1) {
@@ -63,14 +66,5 @@ public abstract class CRUDController<T> : Controller where T: class, HasId
         return Ok(item);
     }
 
-    [HttpPost("{id?}/tag")]
-
-    public IActionResult Ctag([FromBody] T item) {
-        // Console.WriteLine(ModelState);
-        // if(!ModelState.IsValid)
-        //     return BadRequest(ModelState.to());
-
-            return Ok(r.Create(item));
-
-    }
+ 
 }

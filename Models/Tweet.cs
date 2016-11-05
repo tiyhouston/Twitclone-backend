@@ -26,8 +26,15 @@ public class Tweet : HasId
 public class Twitclone : HasId {
     public int Id { get; set; }
     public List<Tweet> TweetLists { get; set; }
+    public List<User> Users {get; set;}
 
 }
+
+// public class TweetList : HasId {
+//     public int Id {get; set;}
+//     public List<Tweet> Tweets { get; set}
+
+// }
 public partial class DB : DbContext {
     public DbSet<Tweet> Tweets { get; set; }
     public DbSet<Tweet> Twitclone { get; set; }
@@ -37,9 +44,10 @@ public partial class DB : DbContext {
 public partial class Handler {
    public void RegisterRepos(IServiceCollection services){
        Repo<Tweet>.Register(services, "Tweets");
-    //    Repo<CardList>.Register(services, "CardLists",
+    //    Repo<TweetList>.Register(services, "TweetLists",
     //        d => d.Include(l => l.Cards));
-    //    Repo<Board>.Register(services, "Boards",
-    //        d => d.Include(b => b.Lists).ThenInclude(l => l.Cards));
+       Repo<Twitclone>.Register(services, "Twitclone",
+           d => d.Include(b => b.Lists).ThenInclude(l => l.Tweets));
+        Repo<User>.Register(services, "Users");
    }
 }

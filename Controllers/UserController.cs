@@ -6,8 +6,8 @@ using System;
 [Route("/api/user")]  ///fix this tomorrow
 
 public class UserAPIController : CRUDController<User> {
-    private IRepository<User> users;
+    //private IRepository<User> users;
     public UserAPIController(IRepository<User> u) : base(u){
-        users = u;
+        //users = u;
     }
 }
