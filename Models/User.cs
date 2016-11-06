@@ -12,7 +12,7 @@ public class User: HasId{
     public int Id{get; set;}
     public string Username{get; set;}
     public string AvatarURL{get; set;}
-    public DateTime CreatedAt{get; set;}
+    public DateTime CreatedAt{get; set;}= DateTime.Now;
     public int TweetId {get; set;}
 
 } 

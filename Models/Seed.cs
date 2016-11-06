@@ -44,7 +44,7 @@ public static class Seed
             User = Users[0],
             IsRetweet = false,
             Tags = new List<Tag> { Tags[0] },
-            // Likes = 1
+            Likes = 1
         };
 
         db.Tweets.Add(f);
@@ -56,7 +56,7 @@ public static class Seed
             ReplyToTweet = f.Id,
             IsRetweet = true,
             Tags = new List<Tag> { Tags[0] },
-            // Likes = 2
+            Likes = 2
         };
 
         var Tweets = new List<Tweet> {
@@ -67,7 +67,7 @@ public static class Seed
                 ReplyToTweet = f.Id,
                 IsRetweet = false,
                 Tags = new List<Tag> { Tags[1] },
-                // Likes = 0
+                Likes = 0
             }
         };
 

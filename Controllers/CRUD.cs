@@ -19,7 +19,7 @@ DELETE /api/todo/{id}	Delete an item.	        None	                None
 [Route("/api/tweet")]
 public abstract class CRUDController<T> : Controller where T: class, HasId
 {
-    private IRepository<T> r;
+    public IRepository<T> r;
     public CRUDController(IRepository<T> r){
         this.r = r;
     }

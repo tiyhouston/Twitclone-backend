@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 public class Tag: HasId{
     public int Id{get; set;}
     public string Value{get; set;}
-    public DateTime CreatedAt{get; set;}
+    public DateTime CreatedAt{get; set;}= DateTime.Now;
     public int TweetId {get; set;}
 }
 public partial class DB : DbContext {
