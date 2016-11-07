@@ -14,24 +14,18 @@ public class TweetAPIController : CRUDController<Tweet> {
 
 
 [HttpGet("search")]
-   public IActionResult Search([FromQuery]string term, int id = -1){
 
+
+   public IActionResult Search([FromQuery]string term, int id = -1){
+        
             return Ok(r.Read(dbset => dbset.Where(tweet => 
-          tweet.Content.CompareTo(term) != -1
+          tweet.Content.ToLower().IndexOf(term.ToLower()) != -1
           
       )));
 
    }
 }
-            // IEnumerable<string> tweets, term;
 
-            // ar x = tweets.Select(t => new
-            //               {
-            //                   Tweet = t,
-            //                   Keywords = keywords.Where(k => k.Split(' ')
-            //                                                   .All(t.Contains))
-            //                                      .ToArray()
-            //               });
             
             //return Ok(tweets.Read(dbset => dbset.Where(tweet => tweet.Id.IndexOf(term) != -1)));
 //            tweet.Id.IndexOf(term) != -1

@@ -14,6 +14,7 @@ using Swashbuckle.SwaggerGen.Generator;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Session;
 
 
 public partial class Handler {
@@ -45,7 +46,7 @@ public partial class Handler {
         // in-memory
         
         services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
-        //services.AddSingleton<IRepository<Tweet>, Repo<Tweet>>();
+        services.AddSingleton<IRepository<Tweet>, Repo<Tweet>>();
         
         // postgresql
         // Use a PostgreSQL database

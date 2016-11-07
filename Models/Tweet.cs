@@ -13,8 +13,6 @@ public class Tweet : HasId
     public int Id{get; set;}
     public string Content{get; set;}
     public User User{get; set;}
-    //public Tweet ReplyTo{get; set;}
-    // public List<Tweet> Replys{get; set;}
     public int ReplyToTweet{get; set;}
     public bool IsRetweet{get; set;}
     public List<Tag> Tags{get; set;}
@@ -41,8 +39,8 @@ public partial class DB : DbContext {
 public partial class Handler {
    public void RegisterRepos(IServiceCollection services){
        Repo<Tweet>.Register(services, "Tweets", d => d.Include(b => b.User).Include(t => t.Tags));
-    //    Repo<Twitclone>.Register(services, "Twitclone",
-    //        d => d.Include(b => b.TweetLists).ThenInclude(l => l.Tags));
+       Repo<Twitclone>.Register(services, "Twitclone",
+           d => d.Include(b => b.TweetLists).ThenInclude(l => l.Tags));
        Repo<User>.Register(services, "Users");
    }
 }
