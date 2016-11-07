@@ -42,5 +42,6 @@ public partial class Handler {
        Repo<Twitclone>.Register(services, "Twitclone",
            d => d.Include(b => b.TweetLists).ThenInclude(l => l.Tags));
        Repo<User>.Register(services, "Users");
+       Repo<Like>.Register(services, "Likes");
    }
 }
