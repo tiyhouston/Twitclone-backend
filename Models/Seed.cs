@@ -10,10 +10,7 @@ public static class Seed
 {
     public static void Initialize(DB db, bool isDevEnvironment)
     {
-        if(isDevEnvironment){
-            db.Database.EnsureDeleted(); // delete then, ...
-        }
-
+        db.Database.EnsureDeleted(); // delete then, ...
         db.Database.EnsureCreated(); // create the tables!!
         // db.Database.Migrate(); // ensure migrations are registered
 
