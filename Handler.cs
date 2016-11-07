@@ -46,7 +46,8 @@ public partial class Handler {
         // in-memory
         
         services.AddDbContext<DB>(options => options.UseInMemoryDatabase());
-        services.AddSingleton<IRepository<Tweet>, Repo<Tweet>>();
+        // services.AddSingleton<IRepository<Tweet>, Repo<Tweet>>();
+        RegisterRepos(services);
         
         // postgresql
         // Use a PostgreSQL database
@@ -57,22 +58,7 @@ public partial class Handler {
         //     )
         // );
 
-        // services.AddIdentity<User, IdentityRole>()
-        //     .AddEntityFrameworkStores<DB>()
-        //     .AddDefaultTokenProviders();
-
         services.AddMvc();
-        RegisterRepos(services);
-        
-        // instead of
-        //      services.AddScoped<IRepository<Card>, Repo<Card>>();
-        // do
-        // Repo<Tweet>.Register(services, "Tweets");
-        // Repo<Tag>.Register(services, "Tags");
-        // Repo<User>.Register(services, "Users");
-        // Repo<Like>.Register(services, "Likes");
-        // Repo<CardList>.Register(services, "CardLists");
-        // Repo<Board>.Register(services, "Boards");
 
         // Inject an implementation of ISwaggerProvider with defaulted settings applied
         services.AddSwaggerGen();
@@ -110,9 +96,9 @@ public partial class Handler {
             app.UseDatabaseErrorPage();
             app.UseStatusCodePages();
             
-        } else {
-            Seed.Initialize(db,env.IsDevelopment());
         }
+
+        Seed.Initialize(db,env.IsDevelopment());
 
         // app.UseApplicationInsightsRequestTelemetry();
         // app.UseApplicationInsightsExceptionTelemetry();
